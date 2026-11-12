@@ -1,184 +1,2448 @@
-.counter {
-  font-size: 16px;
-  padding: 5px 10px;
-  border-radius: 5px;
-  color: var(--accent);
-  background: var(--accent-bg);
-  border: 2px solid transparent;
-  transition: border-color 0.3s;
-  margin-bottom: 24px;
+/* ==========================================================================
+   VOYAGERETAIL - RETAILER MANAGEMENT PLATFORM
+   Airbnb-inspired Minimalism x Expedia-inspired Structured Blue-and-White Design
+   ========================================================================== */
 
-  &:hover {
-    border-color: var(--accent-border);
-  }
-  &:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 2px;
-  }
-}
-
-.hero {
-  position: relative;
-
-  .base,
-  .framework,
-  .vite {
-    inset-inline: 0;
-    margin: 0 auto;
-  }
-
-  .base {
-    width: 170px;
-    position: relative;
-    z-index: 0;
-  }
-
-  .framework,
-  .vite {
-    position: absolute;
-  }
-
-  .framework {
-    z-index: 1;
-    top: 34px;
-    height: 28px;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(44deg) rotateY(39deg)
-      scale(1.4);
-  }
-
-  .vite {
-    z-index: 0;
-    top: 107px;
-    height: 26px;
-    width: auto;
-    transform: perspective(2000px) rotateZ(300deg) rotateX(40deg) rotateY(39deg)
-      scale(0.8);
-  }
-}
-
-#center {
+/* Layout Shell */
+.app-layout {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 25px;
-  place-content: center;
-  place-items: center;
-  flex-grow: 1;
-
-  @media (max-width: 1024px) {
-    padding: 32px 20px 24px;
-    gap: 18px;
-  }
+  background-color: var(--page-bg);
 }
 
-#next-steps {
+.main-viewport {
+  flex: 1;
+  max-width: 1320px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 24px 24px 64px;
+}
+
+/* ==========================================================================
+   1. NAVIGATION BAR (Expedia Structured Architecture x Airbnb Cleanliness)
+   ========================================================================== */
+.site-header {
+  background-color: var(--canvas);
+  border-bottom: 1px solid var(--hairline);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 3px rgba(0, 53, 95, 0.04);
+}
+
+.header-inner {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 74px;
   display: flex;
-  border-top: 1px solid var(--border);
-  text-align: left;
-
-  & > div {
-    flex: 1 1 0;
-    padding: 32px;
-    @media (max-width: 1024px) {
-      padding: 24px 20px;
-    }
-  }
-
-  .icon {
-    margin-bottom: 16px;
-    width: 22px;
-    height: 22px;
-  }
-
-  @media (max-width: 1024px) {
-    flex-direction: column;
-    text-align: center;
-  }
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
 }
 
-#docs {
-  border-right: 1px solid var(--border);
-
-  @media (max-width: 1024px) {
-    border-right: none;
-    border-bottom: 1px solid var(--border);
-  }
-}
-
-#next-steps ul {
-  list-style: none;
-  padding: 0;
+/* Brand Area */
+.header-brand {
   display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.brand-icon-wrapper {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-sm);
+  background: var(--expedia-navy);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.header-brand:hover .brand-icon-wrapper {
+  background-color: var(--expedia-blue);
+  transform: scale(1.03);
+}
+
+.brand-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 19px;
+  font-weight: 800;
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+}
+
+.brand-voyage {
+  color: var(--expedia-navy);
+}
+
+.brand-retail {
+  color: var(--expedia-blue);
+}
+
+.brand-badge {
+  font-size: 10px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--expedia-navy);
+  padding: 1px 5px;
+  border-radius: var(--radius-xs);
+  letter-spacing: 0.6px;
+  margin-left: 4px;
+}
+
+.brand-tagline {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+  letter-spacing: -0.1px;
+}
+
+/* Structured Navigation Tabs */
+.header-nav {
+  display: flex;
+  align-items: center;
   gap: 8px;
-  margin: 32px 0 0;
-
-  .logo {
-    height: 18px;
-  }
-
-  a {
-    color: var(--text-h);
-    font-size: 16px;
-    border-radius: 6px;
-    background: var(--social-bg);
-    display: flex;
-    padding: 6px 12px;
-    align-items: center;
-    gap: 8px;
-    text-decoration: none;
-    transition: box-shadow 0.3s;
-
-    &:hover {
-      box-shadow: var(--shadow);
-    }
-    .button-icon {
-      height: 18px;
-      width: 18px;
-    }
-  }
-
-  @media (max-width: 1024px) {
-    margin-top: 20px;
-    flex-wrap: wrap;
-    justify-content: center;
-
-    li {
-      flex: 1 1 calc(50% - 8px);
-    }
-
-    a {
-      width: 100%;
-      justify-content: center;
-      box-sizing: border-box;
-    }
-  }
 }
 
-#spacer {
-  height: 88px;
-  border-top: 1px solid var(--border);
-  @media (max-width: 1024px) {
-    height: 48px;
-  }
+.nav-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--muted);
+  position: relative;
+  transition: all 0.2s ease;
 }
 
-.ticks {
+.nav-tab:hover {
+  color: var(--expedia-navy);
+  background-color: var(--surface-soft);
+}
+
+.nav-tab.active {
+  color: var(--expedia-blue);
+  background-color: var(--expedia-blue-tint);
+}
+
+.nav-tab.active::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 12px;
+  right: 12px;
+  height: 3px;
+  background-color: var(--expedia-blue);
+  border-radius: 3px 3px 0 0;
+}
+
+.nav-count-badge {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: var(--radius-full);
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+}
+
+/* Header Right Actions */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.btn-icon-subtle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--hairline);
+  background-color: var(--canvas);
+  transition: all 0.2s ease;
+}
+
+.btn-icon-subtle:hover {
+  color: var(--expedia-navy);
+  border-color: var(--muted-light);
+  background-color: var(--surface-soft);
+}
+
+/* Strong Primary CTA Button (Expedia Brand Blue with Airbnb Pill Touch) */
+.btn-primary-expedia {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--expedia-blue);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 87, 184, 0.2);
+  white-space: nowrap;
+}
+
+.btn-primary-expedia:hover {
+  background-color: var(--expedia-blue-hover);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 87, 184, 0.28);
+}
+
+.btn-primary-expedia:active {
+  background-color: var(--expedia-blue-active);
+  transform: translateY(0);
+}
+
+/* Admin Profile Pill */
+.admin-profile-pill {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 5px 10px 5px 6px;
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-full);
+  background-color: var(--canvas);
+  cursor: default;
+}
+
+.admin-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: var(--radius-full);
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.admin-info {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.admin-name {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.admin-role {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+/* ==========================================================================
+   2. STATS & METRICS KPI BAR (Expedia Functional Dashboard)
+   ========================================================================== */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stats-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  box-shadow: var(--shadow-subtle);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.stats-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-card);
+}
+
+.stats-icon-box {
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.stats-icon-box.blue {
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+}
+
+.stats-icon-box.green {
+  background-color: var(--expedia-green-light);
+  color: var(--expedia-green);
+}
+
+.stats-icon-box.amber {
+  background-color: var(--expedia-amber-light);
+  color: var(--expedia-amber);
+}
+
+.stats-icon-box.navy {
+  background-color: #e6edf4;
+  color: var(--expedia-navy);
+}
+
+.stats-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.stats-value {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+}
+
+.stats-label {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+/* ==========================================================================
+   3. PROMINENT SEARCH & FILTER INTERFACE (Expedia Booking Bar x Airbnb Pill)
+   ========================================================================== */
+.search-filter-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* Expedia Iconic Segmented Search Bar */
+.expedia-search-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 8px 10px;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 4px 16px rgba(0, 53, 95, 0.08);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.expedia-search-card:focus-within {
+  border-color: var(--expedia-blue);
+  box-shadow: 0 4px 20px rgba(0, 87, 184, 0.14);
+}
+
+.search-segment {
+  flex: 1;
+  padding: 6px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  position: relative;
+  min-width: 0;
+}
+
+.segment-label {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.segment-icon {
+  color: var(--expedia-blue);
+}
+
+.segment-input-wrapper {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.segment-input {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  padding: 2px 0;
+}
+
+.segment-input::placeholder {
+  color: var(--muted-light);
+  font-weight: 400;
+}
+
+.clear-input-btn {
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  padding: 2px;
+  border-radius: var(--radius-full);
+  transition: color 0.2s ease;
+}
+
+.clear-input-btn:hover {
+  color: var(--ink);
+}
+
+.segment-select {
+  width: 100%;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+  padding: 2px 0;
+  text-overflow: ellipsis;
+}
+
+.search-divider {
+  width: 1px;
+  height: 38px;
+  background-color: var(--hairline);
+  margin: 0 4px;
+  flex-shrink: 0;
+}
+
+.search-cta-wrapper {
+  padding-left: 8px;
+  flex-shrink: 0;
+}
+
+.search-btn-expedia {
+  background-color: var(--expedia-blue);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 700;
+  padding: 13px 26px;
+  border-radius: var(--radius-sm);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 6px rgba(0, 87, 184, 0.25);
+}
+
+.search-btn-expedia:hover {
+  background-color: var(--expedia-blue-hover);
+  box-shadow: 0 4px 12px rgba(0, 87, 184, 0.35);
+}
+
+/* Airbnb Category Pill Navigation Strip */
+.category-pills-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+  scrollbar-width: none;
+}
+
+.category-pills-row::-webkit-scrollbar {
+  display: none;
+}
+
+.category-pill {
+  white-space: nowrap;
+  padding: 8px 16px;
+  border-radius: var(--radius-full);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--muted);
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  transition: all 0.2s ease;
+}
+
+.category-pill:hover {
+  color: var(--expedia-navy);
+  border-color: var(--expedia-navy);
+  background-color: var(--surface-soft);
+}
+
+.category-pill.active {
+  color: #ffffff;
+  background-color: var(--expedia-navy);
+  border-color: var(--expedia-navy);
+  box-shadow: 0 2px 6px rgba(0, 53, 95, 0.2);
+}
+
+/* Sub-filter Controls Bar */
+.sub-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 12px 16px;
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+}
+
+.filter-chips-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.filter-group-label {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin-right: 4px;
+}
+
+.filter-chip {
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 12px;
+  border-radius: var(--radius-sm);
+  background-color: var(--surface-soft);
+  color: var(--body);
+  border: 1px solid var(--hairline);
+  transition: all 0.15s ease;
+}
+
+.filter-chip:hover {
+  background-color: var(--surface-alt);
+  color: var(--ink);
+}
+
+.filter-chip.active {
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+  border-color: var(--expedia-blue);
+  font-weight: 700;
+}
+
+.clear-all-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--expedia-blue);
+  padding: 4px 8px;
+  border-radius: var(--radius-xs);
+  transition: background-color 0.15s ease;
+}
+
+.clear-all-link:hover {
+  background-color: var(--expedia-blue-light);
+  text-decoration: underline;
+}
+
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-left: auto;
+}
+
+.results-count {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.results-count strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+
+.sort-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sort-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.sort-dropdown {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+  outline: none;
+  cursor: pointer;
+}
+
+.sort-dropdown:focus {
+  border-color: var(--expedia-blue);
+}
+
+.view-toggle-group {
+  display: flex;
+  align-items: center;
+  background-color: var(--surface-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 2px;
+}
+
+.view-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 28px;
+  border-radius: 6px;
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.view-btn:hover {
+  color: var(--ink);
+}
+
+.view-btn.active {
+  background-color: var(--canvas);
+  color: var(--expedia-navy);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+/* ==========================================================================
+   4. RETAILER LISTING CARDS (Airbnb Photo-first x Expedia Structured Info)
+   ========================================================================== */
+.retailers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.retailer-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.2s ease;
+  box-shadow: var(--shadow-card);
+}
+
+.retailer-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+  border-color: #cbd5e1;
+}
+
+/* Card Photo Header */
+.card-photo-wrapper {
   position: relative;
   width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background-color: var(--surface-soft);
+  cursor: pointer;
+}
 
-  &::before,
-  &::after {
-    content: '';
-    position: absolute;
-    top: -4.5px;
-    border: 5px solid transparent;
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.retailer-card:hover .card-image {
+  transform: scale(1.04);
+}
+
+.card-top-badges {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge-featured {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  letter-spacing: 0.3px;
+  box-shadow: 0 2px 6px rgba(0, 34, 68, 0.25);
+}
+
+.badge-status {
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 9px;
+  border-radius: var(--radius-full);
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.badge-status.active {
+  background-color: #ffffff;
+  color: var(--expedia-green);
+}
+
+.badge-status.featured {
+  background-color: #ffffff;
+  color: var(--expedia-blue);
+}
+
+.badge-status.under-review {
+  background-color: #ffffff;
+  color: var(--expedia-amber);
+}
+
+.card-heart-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.card-heart-btn:hover {
+  transform: scale(1.12);
+  background-color: #ffffff;
+}
+
+.card-category-tag {
+  position: absolute;
+  bottom: 12px;
+  left: 12px;
+  background-color: rgba(0, 34, 68, 0.85);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 9px;
+  border-radius: var(--radius-xs);
+  backdrop-filter: blur(4px);
+  letter-spacing: 0.2px;
+}
+
+/* Card Body Content */
+.card-body {
+  padding: 18px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Expedia-style Score Header */
+.card-score-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.score-badge {
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  font-size: 13px;
+  font-weight: 800;
+  padding: 4px 7px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.score-text {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.score-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+}
+
+.score-reviews {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.price-tier {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--expedia-navy);
+  background-color: var(--surface-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+/* Title & Location */
+.card-title {
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+  cursor: pointer;
+  transition: color 0.15s ease;
+}
+
+.card-title:hover {
+  color: var(--expedia-blue);
+}
+
+.card-location {
+  display: flex;
+  align-items: flex-start;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.location-pin {
+  color: var(--expedia-blue);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+.location-text {
+  display: flex;
+  flex-direction: column;
+  font-size: 12px;
+}
+
+.location-hub {
+  font-weight: 600;
+  color: var(--body);
+}
+
+.location-gate {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.card-desc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.45;
+  margin-bottom: 14px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Perks Chips */
+.card-perks-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.perk-chip {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--expedia-navy);
+  background-color: var(--surface-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+  border: 1px solid var(--hairline);
+}
+
+.perk-chip.more {
+  background-color: transparent;
+  border: none;
+  color: var(--muted);
+  padding: 0 4px;
+}
+
+/* Commercial Meta Strip */
+.card-commercial-strip {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-top: 1px solid var(--hairline-soft);
+  margin-top: auto;
+  font-size: 12px;
+}
+
+.commission-meta {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.commission-label {
+  color: var(--muted);
+}
+
+.commission-rate {
+  font-weight: 700;
+  color: var(--expedia-green);
+}
+
+.hours-indicator {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* Card Action Buttons */
+.card-actions {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-card-action {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  transition: all 0.15s ease;
+}
+
+.btn-card-action.view {
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+}
+
+.btn-card-action.view:hover {
+  background-color: var(--expedia-blue);
+  color: #ffffff;
+}
+
+.btn-card-action.edit {
+  background-color: var(--surface-soft);
+  color: var(--body);
+  border: 1px solid var(--hairline);
+}
+
+.btn-card-action.edit:hover {
+  background-color: var(--surface-alt);
+  color: var(--ink);
+  border-color: var(--muted-light);
+}
+
+.btn-card-action.delete {
+  background-color: transparent;
+  color: var(--danger);
+  border: 1px solid transparent;
+}
+
+.btn-card-action.delete:hover {
+  background-color: var(--danger-light);
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   5. TABLE COMPARISON VIEW (Expedia Inventory Table)
+   ========================================================================== */
+.table-responsive-container {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.expedia-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.expedia-table th {
+  background-color: var(--surface-soft);
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.expedia-table td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--hairline-soft);
+  vertical-align: middle;
+}
+
+.table-row {
+  transition: background-color 0.15s ease;
+}
+
+.table-row:hover {
+  background-color: var(--surface-soft);
+}
+
+.table-retailer-cell {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.table-thumbnail {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  object-fit: cover;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.table-thumbnail:hover {
+  transform: scale(1.05);
+}
+
+.table-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.table-title-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-retailer-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+
+.table-retailer-name:hover {
+  color: var(--expedia-blue);
+}
+
+.badge-vip-table {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: 10px;
+  font-weight: 700;
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  padding: 1px 6px;
+  border-radius: var(--radius-xs);
+}
+
+.table-category-tag {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px;
+}
+
+.table-location-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.location-hub-name {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.location-terminal-desc {
+  font-size: 12px;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.table-rating-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.table-badge {
+  font-size: 12px;
+  padding: 3px 6px;
+}
+
+.table-rating-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.rating-verdict {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.rating-sub {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.table-commercial-cell {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.tier-pill {
+  font-weight: 700;
+  color: var(--expedia-navy);
+}
+
+.table-commission-rate {
+  font-size: 11px;
+  color: var(--expedia-green);
+  font-weight: 600;
+}
+
+.table-actions-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.table-action-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--hairline);
+  background-color: var(--canvas);
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.table-action-btn.view:hover {
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+  border-color: var(--expedia-blue);
+}
+
+.table-action-btn.edit:hover {
+  background-color: var(--surface-soft);
+  color: var(--ink);
+  border-color: var(--muted-light);
+}
+
+.table-action-btn.delete:hover {
+  background-color: var(--danger-light);
+  color: var(--danger);
+  border-color: #fca5a5;
+}
+
+/* ==========================================================================
+   6. MODAL DIALOGS (Airbnb Cleanliness x Expedia Structured Inputs)
+   ========================================================================== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 20px;
+  animation: fadeIn 0.2s ease;
+}
+
+.modal-container {
+  background-color: var(--canvas);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 680px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-modal);
+  animation: slideUp 0.25s ease;
+  overflow: hidden;
+}
+
+.modal-header {
+  padding: 22px 28px;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.modal-title {
+  font-size: 20px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.3px;
+}
+
+.modal-subtitle {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.modal-close-btn {
+  width: 36px;
+  height: 36px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  transition: all 0.15s ease;
+}
+
+.modal-close-btn:hover {
+  background-color: var(--surface-soft);
+  color: var(--ink);
+}
+
+/* Form Fields */
+.modal-form {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+}
+
+.form-grid {
+  padding: 24px 28px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+
+.col-span-2 {
+  grid-column: span 2;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.form-label .req {
+  color: var(--danger);
+}
+
+.label-with-helper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.preset-btn {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--expedia-blue);
+  background-color: var(--expedia-blue-light);
+  padding: 2px 8px;
+  border-radius: var(--radius-xs);
+  transition: background-color 0.15s ease;
+}
+
+.preset-btn:hover {
+  background-color: #d7e8f7;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  padding: 10px 14px;
+  font-size: 14px;
+  color: var(--ink);
+  background-color: var(--canvas);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  outline: none;
+  border-color: var(--expedia-blue);
+  box-shadow: 0 0 0 3px rgba(0, 87, 184, 0.12);
+}
+
+.form-input.input-error {
+  border-color: var(--danger);
+  background-color: var(--danger-light);
+}
+
+.error-text {
+  font-size: 11px;
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.image-preview-box {
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px;
+  background-color: var(--surface-soft);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+}
+
+.preview-img {
+  width: 60px;
+  height: 44px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.preview-caption {
+  font-size: 11px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.checkbox-group {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.checkbox-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--expedia-navy);
+}
+
+.checkbox-input {
+  width: 17px;
+  height: 17px;
+  cursor: pointer;
+  accent-color: var(--expedia-blue);
+}
+
+.sparkle-icon {
+  color: var(--expedia-amber);
+  margin-right: 4px;
+}
+
+/* Modal Footer */
+.modal-footer {
+  padding: 18px 28px;
+  border-top: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 12px;
+  background-color: var(--surface-soft);
+}
+
+.btn-modal-cancel {
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--body);
+  border: 1px solid var(--hairline);
+  background-color: var(--canvas);
+  transition: all 0.15s ease;
+}
+
+.btn-modal-cancel:hover {
+  background-color: var(--surface-alt);
+  color: var(--ink);
+}
+
+.btn-modal-save {
+  padding: 10px 24px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--expedia-blue);
+  box-shadow: 0 2px 6px rgba(0, 87, 184, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-modal-save:hover {
+  background-color: var(--expedia-blue-hover);
+  box-shadow: 0 4px 12px rgba(0, 87, 184, 0.35);
+}
+
+/* ==========================================================================
+   7. DELETE CONFIRMATION DIALOG (Clear Warning & Safety)
+   ========================================================================== */
+.modal-delete {
+  max-width: 480px;
+}
+
+.modal-delete-header {
+  padding: 24px 28px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.delete-icon-badge {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-full);
+  background-color: var(--danger-light);
+  color: var(--danger);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-delete-body {
+  padding: 16px 28px 24px;
+}
+
+.delete-title {
+  font-size: 19px;
+  font-weight: 800;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.delete-warning {
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.5;
+  margin-bottom: 16px;
+}
+
+.delete-consequence-card {
+  padding: 12px 14px;
+  background-color: #fffbeb;
+  border: 1px solid #fde68a;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  color: #92400e;
+  line-height: 1.4;
+}
+
+.btn-modal-danger {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 700;
+  color: #ffffff;
+  background-color: var(--danger);
+  box-shadow: 0 2px 6px rgba(220, 38, 38, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-modal-danger:hover {
+  background-color: var(--danger-hover);
+  box-shadow: 0 4px 10px rgba(220, 38, 38, 0.35);
+}
+
+/* ==========================================================================
+   8. RETAILER DETAIL MODAL VIEW (Expedia Travel Overview Style)
+   ========================================================================== */
+.modal-detail {
+  max-width: 740px;
+}
+
+.detail-hero-banner {
+  position: relative;
+  width: 100%;
+  height: 260px;
+}
+
+.detail-hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.detail-close-floating {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 38px;
+  height: 38px;
+  border-radius: var(--radius-full);
+  background-color: rgba(255, 255, 255, 0.9);
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(4px);
+  transition: all 0.15s ease;
+}
+
+.detail-close-floating:hover {
+  background-color: #ffffff;
+  transform: scale(1.08);
+}
+
+.detail-hero-overlay {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.detail-category-badge {
+  background-color: rgba(0, 34, 68, 0.85);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-xs);
+  backdrop-filter: blur(4px);
+}
+
+.detail-vip-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background-color: var(--expedia-amber);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 5px 12px;
+  border-radius: var(--radius-xs);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+.detail-body {
+  padding: 24px 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.detail-header-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.detail-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.4px;
+}
+
+.detail-location-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+}
+
+.detail-pin {
+  color: var(--expedia-blue);
+}
+
+.detail-score-box {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background-color: var(--surface-soft);
+  padding: 10px 14px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+  flex-shrink: 0;
+}
+
+.detail-score-number {
+  font-size: 20px;
+  font-weight: 800;
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  padding: 4px 8px;
+  border-radius: 6px;
+  line-height: 1;
+}
+
+.detail-score-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.detail-verdict {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.detail-reviews {
+  font-size: 11px;
+  color: var(--muted);
+}
+
+.detail-divider {
+  height: 1px;
+  background-color: var(--hairline);
+}
+
+.detail-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  background-color: var(--surface-soft);
+  padding: 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--hairline);
+}
+
+.detail-stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.stat-item-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.stat-item-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.detail-section {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.detail-section-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.detail-description-text {
+  font-size: 14px;
+  color: var(--body);
+  line-height: 1.6;
+}
+
+.detail-perks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+}
+
+.detail-perk-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 14px;
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.perk-check-icon {
+  color: var(--expedia-green);
+}
+
+.detail-contact-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--body);
+}
+
+.contact-item.link {
+  color: var(--expedia-blue);
+  font-weight: 600;
+}
+
+.contact-item.link:hover {
+  text-decoration: underline;
+}
+
+.detail-footer {
+  justify-content: space-between;
+}
+
+.footer-right-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* ==========================================================================
+   9. EMPTY STATES & LOADING SKELETONS
+   ========================================================================== */
+.empty-state-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 64px 32px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  box-shadow: var(--shadow-card);
+}
+
+.empty-icon-box {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-full);
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 4px;
+}
+
+.empty-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.empty-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  max-width: 480px;
+  line-height: 1.5;
+}
+
+.empty-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 12px;
+}
+
+.btn-secondary-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--ink);
+  border: 1px solid var(--hairline);
+  background-color: var(--canvas);
+  transition: all 0.15s ease;
+}
+
+.btn-secondary-outline:hover {
+  background-color: var(--surface-soft);
+  border-color: var(--muted-light);
+}
+
+/* Skeleton Loading Effects */
+.shimmer {
+  background: linear-gradient(90deg, #f1f5f9 0%, #e2e8f0 50%, #f1f5f9 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.skeleton-card {
+  pointer-events: none;
+}
+
+.skeleton-photo {
+  height: 200px;
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+}
+
+.skeleton-line {
+  height: 16px;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-line.w-50 { width: 50px; }
+.skeleton-line.w-60 { width: 60px; }
+.skeleton-line.w-80 { width: 80px; }
+.skeleton-line.w-90 { width: 90px; }
+.skeleton-line.w-100 { width: 100px; }
+.skeleton-line.w-120 { width: 120px; }
+.skeleton-line.w-140 { width: 140px; }
+.skeleton-line.w-full { width: 100%; }
+
+.skeleton-actions-row {
+  height: 36px;
+  border-radius: var(--radius-sm);
+  margin-top: 14px;
+}
+
+.skeleton-table-container {
+  pointer-events: none;
+}
+
+.skeleton-cell-retailer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.skeleton-thumb {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  flex-shrink: 0;
+}
+
+.skeleton-lines {
+  display: flex;
+  flex-direction: column;
+}
+
+.skeleton-pill {
+  width: 60px;
+  height: 24px;
+  border-radius: var(--radius-full);
+}
+
+.skeleton-actions {
+  width: 80px;
+  height: 28px;
+  border-radius: var(--radius-sm);
+}
+
+/* ==========================================================================
+   10. HUBS & PERFORMANCE VIEWS
+   ========================================================================== */
+.hubs-view-container,
+.performance-view-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.section-header-block {
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--ink);
+  letter-spacing: -0.4px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.hubs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 24px;
+}
+
+.hub-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.hub-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.hub-photo-wrapper {
+  position: relative;
+  height: 180px;
+}
+
+.hub-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hub-badge-count {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--expedia-navy);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hub-body {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hub-city-row {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--expedia-blue);
+}
+
+.hub-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.hub-meta-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+}
+
+.hub-meta-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.hub-meta-key {
+  color: var(--muted);
+}
+
+.hub-meta-val {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.btn-hub-view {
+  margin-top: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: var(--expedia-blue-light);
+  color: var(--expedia-blue);
+  font-size: 13px;
+  font-weight: 700;
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  transition: all 0.15s ease;
+}
+
+.btn-hub-view:hover {
+  background-color: var(--expedia-blue);
+  color: #ffffff;
+}
+
+/* Performance KPI */
+.perf-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.perf-kpi-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  padding: 22px 24px;
+  box-shadow: var(--shadow-card);
+}
+
+.perf-kpi-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.perf-kpi-main {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.perf-kpi-val {
+  font-size: 36px;
+  font-weight: 800;
+  letter-spacing: -1px;
+  color: var(--ink);
+}
+
+.perf-kpi-val.highlight-blue {
+  color: var(--expedia-blue);
+}
+
+.perf-kpi-val.highlight-green {
+  color: var(--expedia-green);
+}
+
+.perf-kpi-scale {
+  font-size: 16px;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.perf-kpi-sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.perf-section-card {
+  background-color: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+}
+
+.perf-card-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--hairline);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.perf-header-icon {
+  color: var(--expedia-amber);
+}
+
+.perf-card-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.rank-badge {
+  font-size: 12px;
+  font-weight: 800;
+  padding: 3px 8px;
+  border-radius: 4px;
+}
+
+.rank-badge.gold {
+  background-color: #fef3c7;
+  color: #92400e;
+}
+
+.rank-badge.silver {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+.rank-badge.bronze {
+  background-color: #ffedd5;
+  color: #9a3412;
+}
+
+.perf-brand-cell {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.perf-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-xs);
+  object-fit: cover;
+}
+
+.category-sub-pill {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--body);
+  background-color: var(--surface-soft);
+  padding: 3px 8px;
+  border-radius: var(--radius-xs);
+}
+
+.perf-table-row {
+  cursor: pointer;
+}
+
+.perf-table-row:hover {
+  background-color: var(--surface-soft);
+}
+
+/* ==========================================================================
+   11. TOAST NOTIFICATIONS
+   ========================================================================== */
+.toast-container {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 20px;
+  border-radius: var(--radius-md);
+  background-color: var(--ink);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  animation: slideInRight 0.25s ease;
+}
+
+.toast-container.toast-success {
+  background-color: #064e3b;
+  border: 1px solid #059669;
+}
+
+.toast-container.toast-error {
+  background-color: #7f1d1d;
+  border: 1px solid #dc2626;
+}
+
+.toast-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toast-close {
+  color: rgba(255, 255, 255, 0.8);
+  display: flex;
+  align-items: center;
+  margin-left: 6px;
+}
+
+.toast-close:hover {
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   12. FOOTER (Airbnb Clean White Canvas Style)
+   ========================================================================== */
+.site-footer {
+  background-color: var(--canvas);
+  border-top: 1px solid var(--hairline);
+  margin-top: auto;
+}
+
+.footer-top-grid {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 48px 24px 36px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 36px;
+}
+
+.footer-heading {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.footer-links {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: var(--body);
+  transition: color 0.15s ease;
+}
+
+.footer-links a:hover {
+  color: var(--expedia-blue);
+  text-decoration: underline;
+}
+
+.footer-action-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--expedia-blue);
+  font-weight: 600;
+  text-align: left;
+}
+
+.footer-action-link:hover {
+  text-decoration: underline;
+}
+
+.footer-bottom-band {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding: 24px;
+  border-top: 1px solid var(--hairline-soft);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.footer-bullet {
+  color: var(--hairline);
+}
+
+.footer-locale {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.locale-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* ==========================================================================
+   13. ANIMATIONS & RESPONSIVE BREAKPOINTS
+   ========================================================================== */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+@media (max-width: 1024px) {
+  .header-nav {
+    display: none;
+  }
+  
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .expedia-search-card {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  
+  .search-divider {
+    display: none;
+  }
+  
+  .search-segment {
+    flex: 1 1 calc(50% - 12px);
   }
 
-  &::before {
-    left: 0;
-    border-left-color: var(--border);
+  .search-cta-wrapper {
+    width: 100%;
+    padding-left: 0;
   }
-  &::after {
-    right: 0;
-    border-right-color: var(--border);
+
+  .search-btn-expedia {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .perf-kpi-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-top-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-inner {
+    height: 64px;
+    padding: 0 16px;
+  }
+  
+  .brand-tagline,
+  .btn-label-desktop,
+  .admin-info {
+    display: none;
+  }
+
+  .main-viewport {
+    padding: 16px 16px 48px;
+  }
+
+  .stats-container {
+    grid-template-columns: 1fr;
+  }
+
+  .search-segment {
+    flex: 1 1 100%;
+  }
+
+  .sub-filter-bar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .controls-right {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .retailers-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-grid {
+    grid-template-columns: 1fr;
+    padding: 16px 20px;
+  }
+
+  .col-span-2 {
+    grid-column: span 1;
+  }
+
+  .detail-stats-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-footer {
+    padding: 14px 20px;
+  }
+
+  .toast-container {
+    left: 16px;
+    right: 16px;
+    bottom: 16px;
   }
 }
