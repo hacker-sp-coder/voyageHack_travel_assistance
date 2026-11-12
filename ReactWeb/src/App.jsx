@@ -14,6 +14,8 @@ import { Toast } from './components/Toast';
 import { Footer } from './components/Footer';
 import { HubsView } from './components/HubsView';
 import { PerformanceView } from './components/PerformanceView';
+import { TrustSafetyDashboard } from './components/TrustSafetyDashboard';
+import { useTrustSafety } from './hooks/useTrustSafety';
 import './App.css';
 
 const LOCAL_STORAGE_KEY = 'voyageretail_concessions_v1';
@@ -34,8 +36,11 @@ function App() {
   });
 
   const [isLoading, setIsLoading] = useState(true);
-  const [activeTab, setActiveTab] = useState('retailers'); // 'retailers' | 'hubs' | 'performance'
+  const [activeTab, setActiveTab] = useState('retailers'); // 'retailers' | 'hubs' | 'performance' | 'trust'
   const [viewMode, setViewMode] = useState('grid'); // 'grid' | 'table'
+
+  // Trust & Safety System
+  const trustSafety = useTrustSafety(retailers);
 
   // 2. Search & Filter State
   const [searchQuery, setSearchQuery] = useState('');
@@ -220,10 +225,19 @@ function App() {
         totalRetailers={retailers.length}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        unreadAlerts={trustSafety.unreadNotificationsCount}
       />
 
       {/* Main Content Area */}
       <main className="main-viewport">
+        {/* Trust & Safety Tab */}
+        {activeTab === 'trust' && (
+          <TrustSafetyDashboard
+            retailers={retailers}
+            trustSafety={trustSafety}
+          />
+        )}
+
         {/* Hubs Tab View */}
         {activeTab === 'hubs' && (
           <HubsView
@@ -285,6 +299,7 @@ function App() {
                     onEdit={handleOpenEditModal}
                     onDelete={handleOpenDeleteModal}
                     onViewDetails={handleViewDetails}
+                    trustProfile={trustSafety.trustProfiles[retailer.id]}
                   />
                 ))}
               </div>

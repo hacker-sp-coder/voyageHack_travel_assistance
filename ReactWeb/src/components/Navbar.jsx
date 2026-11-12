@@ -1,7 +1,7 @@
 import React from 'react';
-import { IconCompass, IconPlus, IconStore, IconRefresh } from './Icons';
+import { IconCompass, IconPlus, IconStore, IconRefresh, IconShield } from './Icons';
 
-export function Navbar({ onOpenAddModal, onResetDemo, totalRetailers, activeTab, setActiveTab }) {
+export function Navbar({ onOpenAddModal, onResetDemo, totalRetailers, activeTab, setActiveTab, unreadAlerts }) {
   return (
     <header className="site-header">
       <div className="header-inner">
@@ -47,6 +47,18 @@ export function Navbar({ onOpenAddModal, onResetDemo, totalRetailers, activeTab,
           >
             <span>Performance</span>
           </button>
+
+          <button 
+            type="button" 
+            className={`nav-tab trust-tab ${activeTab === 'trust' ? 'active' : ''}`}
+            onClick={() => setActiveTab('trust')}
+          >
+            <IconShield size={16} />
+            <span>Trust &amp; Safety</span>
+            {unreadAlerts > 0 && (
+              <span className="ts-nav-badge">{unreadAlerts}</span>
+            )}
+          </button>
         </nav>
 
         {/* Right Action Tools */}
@@ -71,9 +83,14 @@ export function Navbar({ onOpenAddModal, onResetDemo, totalRetailers, activeTab,
             <span>Add Retailer</span>
           </button>
 
+          <div className="header-divider" aria-hidden="true" />
+
           {/* User Profile Pill */}
           <div className="admin-profile-pill" title="Commercial Terminal Manager">
-            <div className="admin-avatar">AP</div>
+            <div className="admin-avatar-wrapper">
+              <div className="admin-avatar">AP</div>
+              <span className="admin-online-badge" title="Online" />
+            </div>
             <div className="admin-info">
               <span className="admin-name">Airport Ops</span>
               <span className="admin-role">Global Admin</span>

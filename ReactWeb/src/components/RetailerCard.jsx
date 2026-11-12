@@ -5,10 +5,12 @@ import {
   IconTrash, 
   IconHeart, 
   IconEye, 
-  IconSparkles 
+  IconSparkles,
+  IconShield
 } from './Icons';
+import { getTrustClassification } from '../data/trustSafetyData';
 
-export function RetailerCard({ retailer, onEdit, onDelete, onViewDetails }) {
+export function RetailerCard({ retailer, onEdit, onDelete, onViewDetails, trustProfile }) {
   const [isFavorited, setIsFavorited] = useState(false);
 
   // Determine Expedia-style rating label
@@ -61,6 +63,18 @@ export function RetailerCard({ retailer, onEdit, onDelete, onViewDetails }) {
         <div className="card-category-tag">
           {retailer.category}
         </div>
+
+        {/* Trust Score Mini Badge */}
+        {trustProfile && (
+          <div
+            className="card-trust-score"
+            style={{ background: getTrustClassification(trustProfile.trustScore).color }}
+            title={`Trust Score: ${trustProfile.trustScore}/100 — ${getTrustClassification(trustProfile.trustScore).label}`}
+          >
+            <IconShield size={10} />
+            <span>{trustProfile.trustScore}</span>
+          </div>
+        )}
       </div>
 
       {/* Card Content & Information Hierarchy */}
